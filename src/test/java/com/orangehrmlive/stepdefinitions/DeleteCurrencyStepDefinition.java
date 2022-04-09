@@ -17,6 +17,8 @@ import static com.orangehrmlive.task.landingpage.GoAndFillPayGrades.goAndFillPay
 import static com.orangehrmlive.task.landingpage.OpenLandingPage.openLandingPage;
 import static com.orangehrmlive.userinterface.assignedcuerrencies.AssignedCurrencies.MSG_DELETE_OK;
 import static com.orangehrmlive.util.Comparator.MSG_ALL_OK_TEXT;
+import static com.orangehrmlive.util.Constants.pass;
+import static com.orangehrmlive.util.Constants.user;
 import static com.orangehrmlive.util.GeneralData.generalDates;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -39,8 +41,8 @@ public class DeleteCurrencyStepDefinition extends SetUp {
             theActorInTheSpotlight().wasAbleTo(
                     openLandingPage(),
                     fillLogIn()
-                            .useEmail("Admin")
-                            .usePassword("admin123"),
+                            .useEmail(user)
+                            .usePassword(pass),
                     goAndFillPayGrades()
                             .useName(orangehrmLiveModel.getName()),
                     fillCurrencyPayGrades()

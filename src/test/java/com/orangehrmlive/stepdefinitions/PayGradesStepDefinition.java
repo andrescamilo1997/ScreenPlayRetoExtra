@@ -16,6 +16,8 @@ import static com.orangehrmlive.task.landingpage.GoAndFillPayGrades.goAndFillPay
 import static com.orangehrmlive.task.landingpage.OpenLandingPage.openLandingPage;
 import static com.orangehrmlive.userinterface.assignedcuerrencies.AssignedCurrencies.MSG_DELETE_OK;
 import static com.orangehrmlive.util.Comparator.MSG_DELETE;
+import static com.orangehrmlive.util.Constants.pass;
+import static com.orangehrmlive.util.Constants.user;
 import static com.orangehrmlive.util.GeneralData.generalDates;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -25,7 +27,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class PayGradesStepDefinition extends SetUp {
     private static final Logger LOGGER = Logger.getLogger(PayGradesStepDefinition.class);
     private static final String ACTOR_NAME = "Admin";
-    private OrangehrmLiveModel orangehrmLiveModel = generalDates();
 
 
     @Given("enter with your credentials and enter the pay grades section")
@@ -45,10 +46,11 @@ public class PayGradesStepDefinition extends SetUp {
     @When("enters a new degree, and assigns it a currencies")
     public void entersANewDegreeAndAssignsItACurrencies() {
         try{
+            OrangehrmLiveModel orangehrmLiveModel = generalDates();
             theActorInTheSpotlight().attemptsTo(
                     fillLogIn()
-                            .useEmail("Admin")
-                            .usePassword("admin123"),
+                            .useEmail(user)
+                            .usePassword(pass),
                     goAndFillPayGrades()
                             .useName(orangehrmLiveModel.getName()),
                     fillCurrencyPayGrades()
