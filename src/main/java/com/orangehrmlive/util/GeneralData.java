@@ -3,6 +3,8 @@ package com.orangehrmlive.util;
 import com.github.javafaker.Faker;
 import com.orangehrmlive.models.OrangehrmLiveModel;
 
+import java.util.Locale;
+
 import static com.orangehrmlive.util.Constants.*;
 
 public class GeneralData {
@@ -24,9 +26,11 @@ public class GeneralData {
         currency = currencies;
         randomNumber = faker.number().numberBetween(numberMin,numberMax);
 
+
+
         minimum = String.valueOf(randomNumber);
 
-        maximum = minimum + concatNumber;
+        maximum = String.valueOf(randomNumber+20);
 
 
         orangehrmLiveModel = new OrangehrmLiveModel();
@@ -36,6 +40,11 @@ public class GeneralData {
         orangehrmLiveModel.setMinimum(minimum);
 
         return orangehrmLiveModel;
+    }
+
+    public static String reformatNumber(String textToFormat){
+        int a = Integer.parseInt(textToFormat);
+        return String.format(Locale.ENGLISH,"%,d",a)+".00";
     }
 
 

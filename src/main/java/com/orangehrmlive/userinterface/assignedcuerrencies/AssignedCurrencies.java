@@ -26,9 +26,17 @@ public class AssignedCurrencies extends PageObject {
             .the("Save Currency")
             .located(By.id("btnSaveCurrency"));
 
-    public static final Target MSG_LIST_OK = Target
-            .the("save all ok")
+    public static final Target MSG_LIST_OK_CURRENCY = Target
+            .the("save CURRENCY ok")
             .located(By.xpath("//*[@id=\"tblCurrencies\"]/tbody/tr/td[2]/a"));
+
+    public static final Target MSG_LIST_OK_MAX_CURRENCY = Target
+            .the("save MAX CURRENCY ok")
+            .located(By.xpath("//*[@id=\"tblCurrencies\"]/tbody/tr/td[4]"));
+
+    public static final Target MSG_LIST_OK_MIN_CURRENCY = Target
+            .the("save MIN CURRENCY ok")
+            .located(By.xpath("//*[@id=\"tblCurrencies\"]/tbody/tr/td[3]"));
 
     public static final Target  CHECK_DELETE = Target
             .the("Delete this Currency")

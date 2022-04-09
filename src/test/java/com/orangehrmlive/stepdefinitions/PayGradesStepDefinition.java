@@ -9,13 +9,15 @@ import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 
 import static com.orangehrmlive.exceptions.ValidationTextDoNotMatch.VALIDATION_DO_NOT_MATCH;
+import static com.orangehrmlive.question.PayGradeMINQuestion.payGradeMINQuestion;
+import static com.orangehrmlive.question.PayGradeMaxQuestion.payGradeMaxQuestion;
 import static com.orangehrmlive.question.PayGradeQuestion.payGradeQuestion;
 import static com.orangehrmlive.task.landingpage.FillCurrencyPayGrades.fillCurrencyPayGrades;
 import static com.orangehrmlive.task.landingpage.FillLogIn.fillLogIn;
 import static com.orangehrmlive.task.landingpage.GoAndFillPayGrades.goAndFillPayGrades;
 import static com.orangehrmlive.task.landingpage.OpenLandingPage.openLandingPage;
-import static com.orangehrmlive.userinterface.assignedcuerrencies.AssignedCurrencies.MSG_DELETE_OK;
-import static com.orangehrmlive.util.Comparator.MSG_DELETE;
+import static com.orangehrmlive.userinterface.assignedcuerrencies.AssignedCurrencies.*;
+import static com.orangehrmlive.util.Comparator.MSG_ALL_OK_TEXT;
 import static com.orangehrmlive.util.Constants.pass;
 import static com.orangehrmlive.util.Constants.user;
 import static com.orangehrmlive.util.GeneralData.generalDates;
@@ -27,6 +29,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class PayGradesStepDefinition extends SetUp {
     private static final Logger LOGGER = Logger.getLogger(PayGradesStepDefinition.class);
     private static final String ACTOR_NAME = "Admin";
+    private OrangehrmLiveModel orangehrmLiveModel = generalDates();
 
 
     @Given("enter with your credentials and enter the pay grades section")
@@ -46,7 +49,6 @@ public class PayGradesStepDefinition extends SetUp {
     @When("enters a new degree, and assigns it a currencies")
     public void entersANewDegreeAndAssignsItACurrencies() {
         try{
-            OrangehrmLiveModel orangehrmLiveModel = generalDates();
             theActorInTheSpotlight().attemptsTo(
                     fillLogIn()
                             .useEmail(user)
@@ -70,6 +72,17 @@ public class PayGradesStepDefinition extends SetUp {
         theActorInTheSpotlight().should(
                 seeThat(
                         payGradeQuestion()
+                                .useMSG_CURRENCY(MSG_ALL_OK_TEXT.getValue())
+                                .is(), equalTo(true)
+                ),
+                seeThat(
+                        payGradeMINQuestion()
+                                .useMinCurrency(orangehrmLiveModel.getMinimum())
+                                .is(), equalTo(true)
+                ),
+                seeThat(
+                        payGradeMaxQuestion()
+                                .useMaxCurrency(orangehrmLiveModel.getMaximum())
                                 .is(), equalTo(true)
                 )
                         .orComplainWith(ValidationTextDoNotMatch.class,
@@ -81,8 +94,12 @@ public class PayGradesStepDefinition extends SetUp {
     private String compareInWithSystemOutcome(){
         return "\n"
                 + "Data for test : System outcome" + "\n"
-                + MSG_DELETE.getValue() + " : "
-                + MSG_DELETE_OK.resolveFor(theActorInTheSpotlight()).getText();
+                + MSG_ALL_OK_TEXT.getValue() + " : "
+                + MSG_LIST_OK_CURRENCY.resolveFor(theActorInTheSpotlight()).getText() + "\n"
+                + orangehrmLiveModel.getMaximum() + " : "
+                + MSG_LIST_OK_MAX_CURRENCY.resolveFor(theActorInTheSpotlight()).getText() + "\n"
+                + orangehrmLiveModel.getMinimum() + " : "
+                + MSG_LIST_OK_MIN_CURRENCY.resolveFor(theActorInTheSpotlight()).getText();
     }
 
 }
