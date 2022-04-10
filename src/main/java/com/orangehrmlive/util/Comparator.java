@@ -2,7 +2,7 @@ package com.orangehrmlive.util;
 
 public enum Comparator {
     MSG_ALL_OK_TEXT ("United States Dollar"),
-    MSG_DELETE("No Records Found");
+    MSG_DELETE      ("No Records Found");
 
     private final String value;
 

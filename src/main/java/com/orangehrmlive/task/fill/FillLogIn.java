@@ -1,4 +1,4 @@
-package com.orangehrmlive.task.landingpage;
+package com.orangehrmlive.task.fill;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -29,16 +29,16 @@ public class FillLogIn implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(USER_NAME,isVisible()).forNoMoreThan(Ten).seconds(),
+                WaitUntil.the   (USER_NAME,isVisible()).forNoMoreThan(Ten).seconds(),
 
-                Scroll.to(USER_NAME),
-                Enter.theValue(email).into(USER_NAME),
+                Scroll.to       (USER_NAME),
+                Enter.theValue  (email).into(USER_NAME),
 
-                Scroll.to(PASSWORD),
-                Enter.theValue(password).into(PASSWORD),
+                Scroll.to       (PASSWORD),
+                Enter.theValue  (password).into(PASSWORD),
 
-                Scroll.to(LOGIN_BTN),
-                Click.on(LOGIN_BTN)
+                Scroll.to       (LOGIN_BTN),
+                Click.on        (LOGIN_BTN)
         );
 
     }

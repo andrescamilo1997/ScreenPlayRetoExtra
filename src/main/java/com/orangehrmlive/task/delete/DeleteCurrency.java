@@ -1,4 +1,4 @@
-package com.orangehrmlive.task.landingpage;
+package com.orangehrmlive.task.delete;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -14,13 +14,13 @@ public class DeleteCurrency implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                WaitUntil.the(CHECK_DELETE,isVisible()).forNoMoreThan(Ten).seconds(),
+                WaitUntil.the   (CHECK_DELETE,isVisible()).forNoMoreThan(Ten).seconds(),
 
-                Scroll.to(CHECK_DELETE),
-                Click.on(CHECK_DELETE),
+                Scroll.to       (CHECK_DELETE),
+                Click.on        (CHECK_DELETE),
 
-                Scroll.to(BTN_DELETE),
-                Click.on(BTN_DELETE)
+                Scroll.to       (BTN_DELETE),
+                Click.on        (BTN_DELETE)
         );
 
     }

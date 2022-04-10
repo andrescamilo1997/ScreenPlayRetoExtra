@@ -9,11 +9,12 @@ import io.cucumber.java.en.When;
 import org.apache.log4j.Logger;
 
 import static com.orangehrmlive.exceptions.ValidationTextDoNotMatch.VALIDATION_DO_NOT_MATCH;
-import static com.orangehrmlive.question.DeleteGradeQuestion.deleteGradeQuestion;
-import static com.orangehrmlive.task.landingpage.DeleteCurrency.deleteCurrency;
-import static com.orangehrmlive.task.landingpage.FillCurrencyPayGrades.fillCurrencyPayGrades;
-import static com.orangehrmlive.task.landingpage.FillLogIn.fillLogIn;
-import static com.orangehrmlive.task.landingpage.GoAndFillPayGrades.goAndFillPayGrades;
+import static com.orangehrmlive.question.delete.DeleteGradeQuestion.deleteGradeQuestion;
+import static com.orangehrmlive.task.delete.DeleteCurrency.deleteCurrency;
+import static com.orangehrmlive.task.fill.FillCurrencyPayGrades.fillCurrencyPayGrades;
+import static com.orangehrmlive.task.fill.FillLogIn.fillLogIn;
+import static com.orangehrmlive.task.fill.FillPayGrades.fillPayGrades;
+import static com.orangehrmlive.task.go.GoPayGrades.goPayGrades;
 import static com.orangehrmlive.task.landingpage.OpenLandingPage.openLandingPage;
 import static com.orangehrmlive.userinterface.assignedcuerrencies.AssignedCurrencies.MSG_DELETE_OK;
 import static com.orangehrmlive.util.Comparator.MSG_ALL_OK_TEXT;
@@ -41,14 +42,15 @@ public class DeleteCurrencyStepDefinition extends SetUp {
             theActorInTheSpotlight().wasAbleTo(
                     openLandingPage(),
                     fillLogIn()
-                            .useEmail(user)
+                            .useEmail   (user)
                             .usePassword(pass),
-                    goAndFillPayGrades()
-                            .useName(orangehrmLiveModel.getName()),
+                    goPayGrades(),
+                    fillPayGrades()
+                            .useName    (orangehrmLiveModel.getName()),
                     fillCurrencyPayGrades()
                             .useCurrency(orangehrmLiveModel.getCurrency())
-                            .useMaximum(orangehrmLiveModel.getMaximum())
-                            .useMinimum(orangehrmLiveModel.getMinimum())
+                            .useMaximum (orangehrmLiveModel.getMaximum())
+                            .useMinimum (orangehrmLiveModel.getMinimum())
 
             );
 

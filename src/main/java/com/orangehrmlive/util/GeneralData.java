@@ -9,39 +9,36 @@ import static com.orangehrmlive.util.Constants.*;
 
 public class GeneralData {
 
-    private     static  OrangehrmLiveModel   orangehrmLiveModel;
-    private     static  Faker                faker;
-    private     static  String               name;
-    private     static  String               currency;
-    private     static  String               maximum;
-    private     static  String               minimum;
-    private     static  String               currencyResponse;
-    private     static  int                  randomNumber;
-    private     static  int                  littleRandom;
+    private     static  OrangehrmLiveModel   orangehrmLiveModel ;
+    private     static  Faker                faker              ;
+    private     static  String               name               ;
+    private     static  String               currency           ;
+    private     static  String               maximum            ;
+    private     static  String               minimum            ;
+    private     static  String               currencyResponse   ;
+    private     static  int                  randomNumber       ;
+    private     static  int                  littleRandom       ;
 
 
     public static OrangehrmLiveModel generalDates(){
-        faker = new Faker();
+        faker               = new Faker();
+        name                = faker.name().title();
 
-        name = faker.name().title();
+        littleRandom        = faker.number().numberBetween(numMin,numMax);
+        currency            = selectCurrency    (littleRandom);
+        currencyResponse    = currencyResponse  (littleRandom);
 
-        littleRandom = faker.number().numberBetween(1,3);
-        currency = selectCurrency(littleRandom);
-        currencyResponse = currencyResponse(littleRandom);
-
-
-
-        randomNumber = faker.number().numberBetween(numberMin,numberMax);
-        minimum = String.valueOf(randomNumber);
-        maximum = String.valueOf(randomNumber+NUMBERTOADD);
+        randomNumber        = faker.number().numberBetween(numberMin,numberMax);
+        minimum             = String.valueOf    (randomNumber);
+        maximum             = String.valueOf    (randomNumber+NUMBERTOADD);
 
 
         orangehrmLiveModel = new OrangehrmLiveModel();
-        orangehrmLiveModel.setName(name);
-        orangehrmLiveModel.setCurrency(currency);
-        orangehrmLiveModel.setMaximum(maximum);
-        orangehrmLiveModel.setMinimum(minimum);
-        orangehrmLiveModel.setCurrencyResponse(currencyResponse);
+        orangehrmLiveModel.setName              (name);
+        orangehrmLiveModel.setCurrency          (currency);
+        orangehrmLiveModel.setMaximum           (maximum);
+        orangehrmLiveModel.setMinimum           (minimum);
+        orangehrmLiveModel.setCurrencyResponse  (currencyResponse);
 
         return orangehrmLiveModel;
     }

@@ -1,4 +1,4 @@
-package com.orangehrmlive.question;
+package com.orangehrmlive.question.fill;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
