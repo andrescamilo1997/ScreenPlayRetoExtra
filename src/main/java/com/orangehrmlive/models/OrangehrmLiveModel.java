@@ -6,6 +6,16 @@ public class OrangehrmLiveModel {
     private String currency;
     private String maximum;
     private String minimum;
+    private String currencyResponse;
+
+
+    public String getCurrencyResponse() {
+        return currencyResponse;
+    }
+
+    public void setCurrencyResponse(String currencyResponse) {
+        this.currencyResponse = currencyResponse;
+    }
 
     public String getMaximum() {
         return maximum;

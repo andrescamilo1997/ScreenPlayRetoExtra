@@ -72,7 +72,7 @@ public class PayGradesStepDefinition extends SetUp {
         theActorInTheSpotlight().should(
                 seeThat(
                         payGradeQuestion()
-                                .useMSG_CURRENCY(MSG_ALL_OK_TEXT.getValue())
+                                .useMSG_CURRENCY(orangehrmLiveModel.getCurrencyResponse())
                                 .is(), equalTo(true)
                 ),
                 seeThat(

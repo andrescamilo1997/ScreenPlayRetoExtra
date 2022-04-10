@@ -9,13 +9,15 @@ import static com.orangehrmlive.util.Constants.*;
 
 public class GeneralData {
 
-    private static OrangehrmLiveModel orangehrmLiveModel;
-    private static Faker faker;
-    private static String name;
-    private static String currency;
-    private static String maximum;
-    private static String minimum;
-    private static int randomNumber;
+    private     static  OrangehrmLiveModel   orangehrmLiveModel;
+    private     static  Faker                faker;
+    private     static  String               name;
+    private     static  String               currency;
+    private     static  String               maximum;
+    private     static  String               minimum;
+    private     static  String               currencyResponse;
+    private     static  int                  randomNumber;
+    private     static  int                  littleRandom;
 
 
     public static OrangehrmLiveModel generalDates(){
@@ -23,14 +25,15 @@ public class GeneralData {
 
         name = faker.name().title();
 
-        currency = currencies;
+        littleRandom = faker.number().numberBetween(1,3);
+        currency = selectCurrency(littleRandom);
+        currencyResponse = currencyResponse(littleRandom);
+
+
+
         randomNumber = faker.number().numberBetween(numberMin,numberMax);
-
-
-
         minimum = String.valueOf(randomNumber);
-
-        maximum = String.valueOf(randomNumber+20);
+        maximum = String.valueOf(randomNumber+NUMBERTOADD);
 
 
         orangehrmLiveModel = new OrangehrmLiveModel();
@@ -38,8 +41,31 @@ public class GeneralData {
         orangehrmLiveModel.setCurrency(currency);
         orangehrmLiveModel.setMaximum(maximum);
         orangehrmLiveModel.setMinimum(minimum);
+        orangehrmLiveModel.setCurrencyResponse(currencyResponse);
 
         return orangehrmLiveModel;
+    }
+
+    public static String selectCurrency(int numberToSelect){
+        switch (numberToSelect){
+            case 1:
+                return currencies;
+            case 2:
+                return currencies1;
+            default:
+                return currencies2;
+        }
+    }
+
+    public static String currencyResponse(int numberToSelect){
+        switch (numberToSelect){
+            case 1:
+                return currenciesResponse;
+            case 2:
+                return currenciesResponse1;
+            default:
+                return currenciesResponse2;
+        }
     }
 
     public static String reformatNumber(String textToFormat){
